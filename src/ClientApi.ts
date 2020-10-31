@@ -36,9 +36,9 @@ export class ClientApi extends ClientRequestAbstract {
      * @param {CryptogramPaymentRequest} data
      * @returns {Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>}
      */
-    public async chargeCryptogramPayment(data: CryptogramPaymentRequest) {
+    public async chargeCryptogramPayment(data: CryptogramPaymentRequest, idempotencyKey: string) {
         return new PaymentWith3DSClientResponse(
-            await this.call<PaymentWith3DSResponse>("/payments/cards/charge", data),
+            await this.call<PaymentWith3DSResponse>("/payments/cards/charge", data, idempotencyKey),
         );
     }
 
@@ -48,9 +48,9 @@ export class ClientApi extends ClientRequestAbstract {
      * @param {CryptogramPaymentRequest} data
      * @returns {Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>}
      */
-    public async authorizeCryptogramPayment(data: CryptogramPaymentRequest) {
+    public async authorizeCryptogramPayment(data: CryptogramPaymentRequest, idempotencyKey: string) {
         return new PaymentWith3DSClientResponse(
-            await this.call<PaymentWith3DSResponse>("/payments/cards/auth", data),
+            await this.call<PaymentWith3DSResponse>("/payments/cards/auth", data, idempotencyKey),
         );
     }
 
@@ -60,9 +60,9 @@ export class ClientApi extends ClientRequestAbstract {
      * @param {TokenPaymentRequest} data
      * @returns {Promise<PaymentClientResponse<PaymentResponse>>}
      */
-    public async chargeTokenPayment(data: TokenPaymentRequest) {
+    public async chargeTokenPayment(data: TokenPaymentRequest, idempotencyKey: string) {
         return new PaymentClientResponse(
-            await this.call<PaymentResponse>("/payments/tokens/charge", data),
+            await this.call<PaymentResponse>("/payments/tokens/charge", data, idempotencyKey),
         );
     }
 
@@ -72,9 +72,9 @@ export class ClientApi extends ClientRequestAbstract {
      * @param {TokenPaymentRequest} data
      * @returns Promise<PaymentClientResponse<PaymentResponse>>
      */
-    public async authorizeTokenPayment(data: TokenPaymentRequest) {
+    public async authorizeTokenPayment(data: TokenPaymentRequest, idempotencyKey: string) {
         return new PaymentClientResponse<PaymentResponse>(
-            await this.call<PaymentResponse>("/payments/tokens/auth", data),
+            await this.call<PaymentResponse>("/payments/tokens/auth", data, idempotencyKey),
         );
     }
 
@@ -84,9 +84,9 @@ export class ClientApi extends ClientRequestAbstract {
      * @param {Confirm3DSRequest} data
      * @returns Promise<PaymentClientResponse<PaymentResponse>>
      */
-    public async confirm3DSPayment(data: Confirm3DSRequest) {
+    public async confirm3DSPayment(data: Confirm3DSRequest, idempotencyKey: string) {
         return new PaymentClientResponse<PaymentResponse>(
-            await this.call<PaymentResponse>("/payments/cards/post3ds", data),
+            await this.call<PaymentResponse>("/payments/cards/post3ds", data, idempotencyKey),
         );
     }
 
@@ -96,8 +96,8 @@ export class ClientApi extends ClientRequestAbstract {
      * @param {ConfirmPaymentRequest} data
      * @returns {Promise<Response<BaseResponse>>}
      */
-    public async confirmPayment(data: ConfirmPaymentRequest) {
-        return new ClientResponse(await this.call<BaseResponse>("/payments/confirm", data));
+    public async confirmPayment(data: ConfirmPaymentRequest, idempotencyKey: string) {
+        return new ClientResponse(await this.call<BaseResponse>("/payments/confirm", data, idempotencyKey));
     }
 
     /**

@@ -7,42 +7,42 @@ export declare class ClientApi extends ClientRequestAbstract {
      * @param {CryptogramPaymentRequest} data
      * @returns {Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>}
      */
-    chargeCryptogramPayment(data: CryptogramPaymentRequest): Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>;
+    chargeCryptogramPayment(data: CryptogramPaymentRequest, idempotencyKey: string): Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>;
     /**
      * Authorize cryptogram payment
      *
      * @param {CryptogramPaymentRequest} data
      * @returns {Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>}
      */
-    authorizeCryptogramPayment(data: CryptogramPaymentRequest): Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>;
+    authorizeCryptogramPayment(data: CryptogramPaymentRequest, idempotencyKey: string): Promise<PaymentWith3DSClientResponse<PaymentWith3DSResponse>>;
     /**
      * Charge token payment
      *
      * @param {TokenPaymentRequest} data
      * @returns {Promise<PaymentClientResponse<PaymentResponse>>}
      */
-    chargeTokenPayment(data: TokenPaymentRequest): Promise<PaymentClientResponse<PaymentResponse>>;
+    chargeTokenPayment(data: TokenPaymentRequest, idempotencyKey: string): Promise<PaymentClientResponse<PaymentResponse>>;
     /**
      * Authorize token payment
      *
      * @param {TokenPaymentRequest} data
      * @returns Promise<PaymentClientResponse<PaymentResponse>>
      */
-    authorizeTokenPayment(data: TokenPaymentRequest): Promise<PaymentClientResponse<PaymentResponse>>;
+    authorizeTokenPayment(data: TokenPaymentRequest, idempotencyKey: string): Promise<PaymentClientResponse<PaymentResponse>>;
     /**
      * Confirm a 3DS payment
      *
      * @param {Confirm3DSRequest} data
      * @returns Promise<PaymentClientResponse<PaymentResponse>>
      */
-    confirm3DSPayment(data: Confirm3DSRequest): Promise<PaymentClientResponse<PaymentResponse>>;
+    confirm3DSPayment(data: Confirm3DSRequest, idempotencyKey: string): Promise<PaymentClientResponse<PaymentResponse>>;
     /**
      * Confirm an authorized payment
      *
      * @param {ConfirmPaymentRequest} data
      * @returns {Promise<Response<BaseResponse>>}
      */
-    confirmPayment(data: ConfirmPaymentRequest): Promise<ClientResponse<BaseResponse>>;
+    confirmPayment(data: ConfirmPaymentRequest, idempotencyKey: string): Promise<ClientResponse<BaseResponse>>;
     /**
      * Refund a payment
      *
